@@ -1,0 +1,154 @@
+{
+  "politician_id": "POL-EXAMPLE-001",
+  "politician_name": "Juan Ejemplo Político",
+  "analysis_timestamp": "2025-12-14T17:09:47.790397",
+  "ira_result": {
+    "final_score": 66.12690811134391,
+    "risk_level": "Stellar Anomaly",
+    "risk_color": "🟠",
+    "recommended_action": "Priority Investigation",
+    "confidence_level": 0.6933333333333334,
+    "dimensions": {
+      "patrimonial": {
+        "score": 98.33333333333333,
+        "weight": 0.40856031128404674,
+        "weighted_score": 40.175097276264594,
+        "indicators_count": 3
+      },
+      "network": {
+        "score": 40.0,
+        "weight": 0.5447470817120623,
+        "weighted_score": 21.78988326848249,
+        "indicators_count": 3
+      },
+      "temporal": {
+        "score": 0.0,
+        "weight": 0.046692607003891065,
+        "weighted_score": 0.0,
+        "indicators_count": 0
+      }
+    },
+    "network_bonus": 24.0,
+    "key_risk_factors": [
+      "Patrimonio 2.2x superior al esperado",
+      "Aumento patrimonial de 65.0% en 2020",
+      "Ratio activos/ingreso: 19.4x",
+      "2 conexiones a entidades offshore",
+      "1 empresas con indicadores de baja actividad",
+      "Red de alta complejidad (+24.0 puntos de bonus)"
+    ],
+    "recommendations": [
+      "Priorizar para investigación periodística detallada",
+      "Cruzar información con bases de datos internacionales",
+      "Analizar documentos corporativos de entidades conectadas",
+      "Considerar solicitudes de información pública adicionales"
+    ]
+  },
+  "fraud_patterns": {
+    "crypto_hiding": {
+      "pattern_detected": true,
+      "pattern_name": "CRYPTO_HIDING",
+      "risk_score": 50,
+      "indicators": [
+        {
+          "type": "mixer_usage",
+          "description": "Wallet 0x12345678... interactuó con mixers",
+          "severity": "high"
+        },
+        {
+          "type": "privacy_coin",
+          "description": "Tenencia de criptomonedas de privacidad",
+          "severity": "high"
+        },
+        {
+          "type": "cross_chain",
+          "description": "Múltiples transacciones cross-chain detectadas",
+          "severity": "medium"
+        },
+        {
+          "type": "structured_transactions",
+          "description": "Patrón de transacciones estructuradas detectado",
+          "severity": "critical"
+        }
+      ],
+      "confidence": 0.8
+    },
+    "offshore_laundering": {
+      "pattern_detected": true,
+      "pattern_name": "OFFSHORE_LAUNDERING",
+      "risk_score": 50,
+      "indicators": [
+        {
+          "type": "shell_company",
+          "description": "Conexión a shell company: Panama Holdings Ltd",
+          "severity": "critical",
+          "jurisdiction": "Panama"
+        },
+        {
+          "type": "nominee_shareholders",
+          "description": "Uso de nominee shareholders en Panama Holdings Ltd",
+          "severity": "high"
+        },
+        {
+          "type": "shell_company",
+          "description": "Conexión a shell company: Cayman Investment Corp",
+          "severity": "critical",
+          "jurisdiction": "Islas Caimán"
+        },
+        {
+          "type": "circular_ownership",
+          "description": "1 estructuras de propiedad circular detectadas",
+          "severity": "critical"
+        }
+      ],
+      "confidence": 0.85
+    },
+    "travel_coincidence": {
+      "pattern_detected": false,
+      "pattern_name": "TRAVEL_COINCIDENCE",
+      "risk_score": 0.0,
+      "indicators": [],
+      "confidence": 0.5
+    },
+    "ghost_company": {
+      "pattern_detected": true,
+      "pattern_name": "GHOST_COMPANY",
+      "risk_score": 18.0,
+      "indicators": [
+        {
+          "type": "ghost_company",
+          "description": "Empresa fantasma: Servicios Fantasma SA (sin empleados registrados, sin oficina física, altos contratos gubernamentales)",
+          "severity": "critical",
+          "ghost_score": 0.85,
+          "details": {
+            "id": "GHOST-001",
+            "name": "Servicios Fantasma SA",
+            "ghost_risk_score": 0.85,
+            "no_employees": true,
+            "no_physical_office": true,
+            "high_government_contracts": true,
+            "total_contracts_value": 2500000.0
+          }
+        }
+      ],
+      "confidence": 0.7
+    },
+    "insider_trading": {
+      "pattern_detected": false,
+      "pattern_name": "INSIDER_TRADING",
+      "risk_score": 0.0,
+      "indicators": [],
+      "confidence": 0.6
+    }
+  },
+  "patterns_detected_count": 3,
+  "total_pattern_score": 118.0,
+  "data_completeness": {
+    "patrimonial": 1.0,
+    "network": 1.0,
+    "temporal": 0.08000000000000002
+  },
+  "overall_completeness": 0.6933333333333334,
+  "executive_summary": "\n## Resumen Ejecutivo - Juan Ejemplo Político\n\n**Índice de Riesgo de Anomalía (IRA):** 66.1/100  \n**Nivel de Riesgo:** 🟠 Stellar Anomaly  \n**Confianza del Análisis:** 69.3%\n\n### Patrones de Fraude Detectados\n\nSe detectaron **3** patrones sospechosos:\n\n- **CRYPTO_HIDING** (Score: 50.0, Confianza: 80%)\n- **OFFSHORE_LAUNDERING** (Score: 50.0, Confianza: 85%)\n- **GHOST_COMPANY** (Score: 18.0, Confianza: 70%)\n\n### Principales Factores de Riesgo\n\n1. Patrimonio 2.2x superior al esperado\n2. Aumento patrimonial de 65.0% en 2020\n3. Ratio activos/ingreso: 19.4x\n\n### Acción Recomendada\n\n**Priority Investigation**\n",
+  "formatted_report": "\n# Reporte de Análisis de Riesgo - Juan Ejemplo Político\n\n**ID:** POL-EXAMPLE-001  \n**Fecha de Análisis:** 2025-12-14 17:09:47  \n**Nivel de Confianza:** 69.3%\n\n---\n\n## 📊 Índice de Riesgo de Anomalía (IRA)\n\n**Score Final:** 66.13 / 100  \n**Nivel de Riesgo:** 🟠 Stellar Anomaly  \n**Acción Recomendada:** Priority Investigation\n\n---\n\n## 🔍 Análisis por Dimensiones\n\n### 1. Dimensión Patrimonial\n- **Score:** 98.33 / 100\n- **Peso:** 40.86%\n- **Contribución al IRA:** 40.18\n- **Completitud de Datos:** 100.00%\n\nMúltiples indicadores críticos de discrepancias patrimoniales (3 señales).\n\n**Indicadores Detectados:**\n- [HIGH] Patrimonio 2.2x superior al esperado (Score: 40.0)\n- [HIGH] Ratio activos/ingreso: 19.4x (Score: 28.3)\n- [CRITICAL] Aumento patrimonial de 65.0% en 2020 (Score: 30.0)\n\n### 2. Dimensión de Redes\n- **Score:** 40.00 / 100\n- **Peso:** 54.47%\n- **Contribución al IRA:** 21.79\n- **Completitud de Datos:** 100.00%\n\nRed presenta 3 patrones que requieren investigación adicional.\n\n**Indicadores Detectados:**\n- [HIGH] 2 conexiones a entidades offshore (Score: 20.0)\n- [HIGH] 1 empresas con indicadores de baja actividad (Score: 12.0)\n- [MEDIUM] 1 conexiones a individuos con historial sospechoso (Score: 8.0)\n\n### 3. Dimensión Temporal\n- **Score:** 0.00 / 100\n- **Peso:** 4.67%\n- **Contribución al IRA:** 0.00\n- **Completitud de Datos:** 8.00%\n\nNo se detectaron correlaciones temporales significativas.\n\n**Indicadores Detectados:**\n\n### 4. Bonus de Complejidad de Red\n- **Bonus:** +24.00 puntos\n- Bonus de complejidad de red: 3 capas intermediarias (+9.0), 4 jurisdicciones diferentes (+5.0), 3 técnicas avanzadas de ocultamiento (+10.0)\n\n---\n\n## ⚠️ Factores Clave de Riesgo\n\n1. Patrimonio 2.2x superior al esperado\n2. Aumento patrimonial de 65.0% en 2020\n3. Ratio activos/ingreso: 19.4x\n4. 2 conexiones a entidades offshore\n5. 1 empresas con indicadores de baja actividad\n6. Red de alta complejidad (+24.0 puntos de bonus)\n\n---\n\n## 📋 Recomendaciones\n\n1. Priorizar para investigación periodística detallada\n2. Cruzar información con bases de datos internacionales\n3. Analizar documentos corporativos de entidades conectadas\n4. Considerar solicitudes de información pública adicionales\n\n---\n\n## ⚖️ Disclaimer Legal\n\nEste análisis identifica **anomalías estadísticas** basadas en datos públicos disponibles. \nLa presencia de anomalías **NO implica actividad ilícita**. Se requiere investigación \nperiodística adicional y verificación por profesionales antes de cualquier publicación.\n\n**Inspector IA es una herramienta de apoyo a la investigación periodística, no un sistema judicial.**\n"
+}

@@ -1,0 +1,60 @@
+.
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── IMPLEMENTATION_SUMMARY.md
+├── LICENSE
+├── PROJECT_STRUCTURE.txt
+├── QUICKSTART.md
+├── README.md
+├── README_IMPLEMENTATION.md
+├── SECURITY.md
+├── STRUCTURE.txt
+├── config
+├── data
+│   └── integrity
+│       └── verification.py
+├── deploy_documentation.sh
+├── docker
+│   └── Dockerfile.api
+├── docker-compose.yml
+├── docs
+│   ├── ARCHITECTURE.md
+│   ├── DEPLOYMENT_GUIDE.md
+│   ├── ETHICAL_FRAMEWORK.md
+│   ├── STRUCTURE.md
+│   └── diagrams
+│       └── system_architecture.mmd
+├── example_analysis_20251214_165810.json
+├── example_report_20251214_165810.md
+├── examples
+│   └── example_analysis.py
+├── frontend
+│   └── src
+│       ├── components
+│       ├── pages
+│       └── services
+├── graalgorithms
+│   └── graph_analysis.py
+├── requirements.txt
+├── services
+│   └── anomaly_detection
+│       └── training_pipeline.py
+├── src
+│   ├── api
+│   │   └── main.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── anomaly_index.py
+│   │   └── risk_calculator.py
+│   ├── database
+│   │   └── neo4j_connector.py
+│   ├── frontend
+│   │   └── components
+│   ├── ml_models
+│   └── utils
+├── synthetic_fraud_ecosystem
+│   └── generators
+│       └── crypto_hiding_injector.py
+└── tests
+
+26 directories, 31 files
