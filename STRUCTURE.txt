@@ -1,0 +1,218 @@
+INSPECTOR_IA/
+│
+├── 📁 docs/                           # Documentación cósmica
+│   ├── 📄 ARCHITECTURE.md            # Arquitectura del multiverso
+│   ├── 📄 ETHICAL_FRAMEWORK.md       # Principios éticos estelares
+│   ├── 📄 API_SPEC.md                # Especificaciones de comunicación interestelar
+│   ├── 📄 DEPLOYMENT_GUIDE.md        # Guía de despliegue galáctico
+│   └── 📁 diagrams/                   # Diagramas de constelaciones
+│       ├── system_architecture.mmd
+│       ├── data_flow.mmd
+│       └── deployment.mmd
+│
+├── 📁 src/                            # Fuente del poder cósmico
+│   │
+│   ├── 📁 core/                       # Núcleo del sistema
+│   │   ├── 📄 __init__.py
+│   │   ├── 📄 anomaly_index.py       # Índice de Riesgo de Anomalía (IRA)
+│   │   ├── 📄 risk_calculator.py     # Calculadora de riesgo estelar
+│   │   └── 📁 xai/                    # Explicabilidad cuántica
+│   │       ├── 📄 explanations.py
+│   │       ├── 📄 visualizations.py
+│   │       └── 📄 narrative_builder.py
+│   │
+│   ├── 📁 data/                       # Ingestion de datos cósmicos
+│   │   ├── 📄 __init__.py
+│   │   ├── 📁 ingestion/
+│   │   │   ├── 📄 scrapers.py        # Recolectores interestelares
+│   │   │   ├── 📄 normalizers.py     # Normalizadores cuánticos
+│   │   │   └── 📄 validators.py      # Validadores de realidad
+│   │   ├── 📁 storage/
+│   │   │   ├── 📄 data_lake.py       # Lago de datos cósmico
+│   │   │   ├── 📄 graph_db.py        # Base de grafos nebulosa
+│   │   │   └── 📄 blockchain.py      # Cadena de bloques inmutable
+│   │   └── 📁 integrity/
+│   │       ├── 📄 merkle_tree.py     # Árbol de Merkle cuántico
+│   │       ├── 📄 provenance.py      # Trazabilidad temporal
+│   │       └── 📄 verification.py    # Verificación de integridad
+│   │
+│   ├── 📁 detection/                  # Motor de detección
+│   │   ├── 📄 __init__.py
+│   │   ├── 📁 patterns/              # Patrones de anomalía
+│   │   │   ├── 📄 crypto_hiding.py   # 🕵️ CRYPTO_HIDING
+│   │   │   ├── 📄 offshore_laundering.py # 🏝️ OFFSHORE_LAUNDERING
+│   │   │   ├── 📄 travel_coincidence.py  # ✈️ TRAVEL_COINCIDENCE
+│   │   │   ├── 📄 ghost_company.py   # 👻 GHOST_COMPANY
+│   │   │   └── 📄 insider_trading.py # 📈 INSIDER_TRADING
+│   │   ├── 📁 algorithms/            # Algoritmos de detección
+│   │   │   ├── 📄 graph_analysis.py  # Análisis de redes estelares
+│   │   │   ├── 📄 temporal_patterns.py # Patrones temporales
+│   │   │   ├── 📄 statistical_anomalies.py # Anomalías estadísticas
+│   │   │   └── 📄 ml_models.py       # Modelos de IA cuántica
+│   │   └── 📁 heuristics/            # Heurísticas de detección
+│   │       ├── 📄 crypto_heuristics.py
+│   │       ├── 📄 financial_heuristics.py
+│   │       └── 📄 network_heuristics.py
+│   │
+│   ├── 📁 synthetic/                  # Universo sintético
+│   │   ├── 📄 __init__.py
+│   │   ├── 📄 fraud_engine.py        # Motor de fraude sintético (SFE)
+│   │   ├── 📁 generators/
+│   │   │   ├── 📄 politician_generator.py
+│   │   │   ├── 📄 company_generator.py
+│   │   │   ├── 📄 transaction_generator.py
+│   │   │   └── 📄 network_generator.py
+│   │   ├── 📁 injectors/
+│   │   │   ├── 📄 crypto_hiding_injector.py
+│   │   │   ├── 📄 offshore_injector.py
+│   │   │   └── 📄 pattern_orchestrator.py
+│   │   ├── 📁 validators/
+│   │   │   ├── 📄 ground_truth_validator.py
+│   │   │   ├── 📄 realism_validator.py
+│   │   │   └── 📄 statistical_validator.py
+│   │   └── 📁 datasets/
+│   │       ├── 📄 base_dataset.py
+│   │       ├── 📄 training_dataset.py
+│   │       └── 📄 validation_dataset.py
+│   │
+│   ├── 📁 graph/                      # Red de conocimiento estelar
+│   │   ├── 📄 __init__.py
+│   │   ├── 📄 schema.py              # Esquema de constelaciones
+│   │   ├── 📄 queries.py             # Consultas cypher cósmicas
+│   │   ├── 📁 models/
+│   │   │   ├── 📄 nodes.py           # Modelos de nodos
+│   │   │   ├── 📄 relationships.py   # Modelos de relaciones
+│   │   │   └── 📄 embeddings.py      # Embeddings estelares
+│   │   └── 📁 analysis/
+│   │       ├── 📄 centrality.py      # Centralidad cósmica
+│   │       ├── 📄 community_detection.py # Detección de comunidades
+│   │       └── 📄 path_finding.py    # Búsqueda de rutas
+│   │
+│   ├── 📁 api/                        # API interestelar
+│   │   ├── 📄 __init__.py
+│   │   ├── 📄 app.py                 # Aplicación FastAPI
+│   │   ├── 📄 routes/
+│   │   │   ├── 📄 analysis.py        # Rutas de análisis
+│   │   │   ├── 📄 data.py           # Rutas de datos
+│   │   │   └── 📄 admin.py          # Rutas administrativas
+│   │   ├── 📁 schemas/               # Esquemas Pydantic
+│   │   │   ├── 📄 requests.py
+│   │   │   ├── 📄 responses.py
+│   │   │   └── 📄 models.py
+│   │   └── 📁 middleware/
+│   │       ├── 📄 auth.py            # Autenticación cósmica
+│   │       ├── 📄 logging.py         # Logging estelar
+│   │       └── 📄 validation.py      # Validación de entrada
+│   │
+│   ├── 📁 frontend/                   # Portal de periodistas
+│   │   ├── 📄 package.json
+│   │   ├── 📄 next.config.js
+│   │   ├── 📁 app/
+│   │   │   ├── 📄 layout.tsx
+│   │   │   ├── 📄 page.tsx
+│   │   │   ├── 📁 dashboard/
+│   │   │   │   ├── 📄 overview.tsx
+│   │   │   │   ├── 📄 alerts.tsx
+│   │   │   │   └── 📄 investigations.tsx
+│   │   │   ├── 📁 analysis/
+│   │   │   │   ├── 📄 politician.tsx
+│   │   │   │   ├── 📄 network.tsx
+│   │   │   │   └── 📄 timeline.tsx
+│   │   │   └── 📁 admin/
+│   │   │       ├── 📄 data_sources.tsx
+│   │   │       ├── 📄 patterns.tsx
+│   │   │       └── 📄 users.tsx
+│   │   ├── 📁 components/
+│   │   │   ├── 📁 charts/
+│   │   │   │   ├── 📄 RiskChart.tsx
+│   │   │   │   ├── 📄 NetworkGraph.tsx
+│   │   │   │   └── 📄 TimelineChart.tsx
+│   │   │   ├── 📁 ui/
+│   │   │   │   ├── 📄 RiskBadge.tsx
+│   │   │   │   ├── 📄 AlertCard.tsx
+│   │   │   │   └── 📄 ExplanationPanel.tsx
+│   │   │   └── 📁 layout/
+│   │   │       ├── 📄 Header.tsx
+│   │   │       ├── 📄 Sidebar.tsx
+│   │   │       └── 📄 Footer.tsx
+│   │   ├── 📁 lib/
+│   │   │   ├── 📄 api.ts
+│   │   │   ├── 📄 utils.ts
+│   │   │   └── 📄 constants.ts
+│   │   └── 📁 styles/
+│   │       ├── 📄 globals.css
+│   │       └── 📄 theme.ts
+│   │
+│   └── 📁 tests/                      # Pruebas de estabilidad cósmica
+│       ├── 📄 __init__.py
+│       ├── 📁 unit/
+│       │   ├── 📄 test_anomaly_index.py
+│       │   ├── 📄 test_crypto_hiding.py
+│       │   └── 📄 test_graph_analysis.py
+│       ├── 📁 integration/
+│       │   ├── 📄 test_data_pipeline.py
+│       │   ├── 📄 test_detection_engine.py
+│       │   └── 📄 test_api_endpoints.py
+│       ├── 📁 e2e/
+│       │   ├── 📄 test_full_analysis.py
+│       │   └── 📄 test_journalist_workflow.py
+│       └── 📁 synthetic/
+│           ├── 📄 test_pattern_generation.py
+│           └── 📄 test_ground_truth.py
+│
+├── 📁 config/                         # Configuración del multiverso
+│   ├── 📄 settings.py                # Configuración principal
+│   ├── 📄 development.yml           # Entorno de desarrollo
+│   ├── 📄 production.yml            # Entorno de producción
+│   └── 📄 testing.yml               # Entorno de pruebas
+│
+├── 📁 scripts/                        # Scripts de automatización cósmica
+│   ├── 📄 setup.py                   # Configuración inicial
+│   ├── 📄 data_ingestion.py         # Ingestión de datos
+│   ├── 📄 synthetic_generation.py   # Generación de universo sintético
+│   ├── 📄 model_training.py         # Entrenamiento de IA
+│   └── 📄 deployment.py             # Despliegue estelar
+│
+├── 📁 infrastructure/                 # Infraestructura galáctica
+│   ├── 📄 docker-compose.yml        # Orquestación de contenedores
+│   ├── 📄 Dockerfile
+│   ├── 📁 kubernetes/
+│   │   ├── 📄 deployment.yaml
+│   │   ├── 📄 service.yaml
+│   │   └── 📄 ingress.yaml
+│   ├── 📁 terraform/
+│   │   ├── 📄 main.tf
+│   │   ├── 📄 variables.tf
+│   │   └── 📄 outputs.tf
+│   └── 📁 monitoring/
+│       ├── 📄 prometheus.yml
+│       ├── 📄 grafana_dashboards/
+│       └── 📄 alerts.yml
+│
+├── 📁 data/                           # Datos cósmicos (gitignored)
+│   ├── 📁 raw/                       # Datos crudos
+│   ├── 📁 processed/                 # Datos procesados
+│   ├── 📁 synthetic/                 # Universo sintético
+│   └── 📁 models/                    # Modelos entrenados
+│
+├── 📁 notebooks/                      # Exploración de realidades alternativas
+│   ├── 📄 01_data_exploration.ipynb
+│   ├── 📄 02_pattern_analysis.ipynb
+│   ├── 📄 03_model_training.ipynb
+│   └── 📄 04_results_visualization.ipynb
+│
+├── 📁 .github/                        # Flujos de trabajo cósmicos
+│   ├── 📁 workflows/
+│   │   ├── 📄 ci.yml                # Integración continua
+│   │   ├── 📄 cd.yml                # Despliegue continuo
+│   │   └── 📄 security_scan.yml     # Escaneo de seguridad
+│   └── 📄 CODEOWNERS
+│
+├── 📄 .env.example                   # Variables de entorno cósmicas
+├── 📄 .gitignore                     # Archivos a ignorar en el multiverso
+├── 📄 pyproject.toml                # Dependencias de Python
+├── 📄 requirements.txt              # Requisitos del universo
+├── 📄 README.md                     # Documento principal
+├── 📄 STRUCTURE.txt                 # Este archivo
+├── 📄 LICENSE                       # Licencia cósmica
+└── 📄 CONTRIBUTING.md               # Guía de contribución estelar
