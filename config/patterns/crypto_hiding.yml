@@ -1,0 +1,71 @@
+# CRYPTO_HIDING Pattern Configuration
+# Inspector IA - Synthetic Fraud Ecosystem
+
+pattern_name: CRYPTO_HIDING
+version: 2.0
+status: design_phase
+
+# Sophistication level parameters
+sophistication_levels:
+  basic:
+    wallet_layers: 1
+    max_intermediaries: 1
+    allow_mixers: false
+    allow_privacy_coins: false
+    allow_cross_chain: false
+    ira_bonus_min: 5
+    ira_bonus_max: 10
+    
+  intermediate:
+    wallet_layers: 2
+    max_intermediaries: 2
+    allow_mixers: true
+    allow_privacy_coins: false
+    allow_cross_chain: true
+    ira_bonus_min: 10
+    ira_bonus_max: 20
+    
+  advanced:
+    wallet_layers: 3
+    max_intermediaries: 3
+    allow_mixers: true
+    allow_privacy_coins: true
+    allow_cross_chain: true
+    ira_bonus_min: 20
+    ira_bonus_max: 30
+
+# Detection heuristic weights
+heuristics:
+  mixer_interaction_detection:
+    weight: 0.25
+    ira_contribution: 15
+    
+  privacy_coin_conversion:
+    weight: 0.20
+    ira_contribution: 12
+    
+  peeling_chain_detection:
+    weight: 0.15
+    ira_contribution: 10
+    
+  cross_chain_suspicious_flow:
+    weight: 0.18
+    ira_contribution: 11
+    
+  structured_transactions:
+    weight: 0.22
+    ira_contribution: 14
+
+# Validation thresholds
+validation:
+  true_positive_threshold: 0.70
+  false_positive_tolerance: 0.10
+  pattern_completeness_minimum: 0.80
+  
+# Performance benchmarks
+benchmarks:
+  detection_rate_target: 0.85
+  false_positive_target: 0.05
+  mean_detection_time_hours: 48
+  xai_quality_minimum: 0.80
+
