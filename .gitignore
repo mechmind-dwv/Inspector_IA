@@ -1,0 +1,109 @@
+# Inspector IA - Advanced Gitignore Configuration
+# ==================================================
+
+# ----- SECRETS & ENVIRONMENT -----
+.env
+.env.*
+!.env.example
+secrets/
+config/secrets/
+*.key
+*.pem
+*.crt
+*.pub
+config/credentials*.yml
+
+# ----- PYTHON -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ----- LOGS & DATABASES -----
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.sqlite
+*.db
+*.sqlite3
+*.db-journal
+
+# ----- PROJECT SPECIFIC (Inspector IA) -----
+# Directorios de datos generados
+data/            # ¡CRÍTICO! Datos procesados, uploads, temp
+reports/         # Reportes generados
+models/          # Modelos de ML entrenados
+synthetic_fraud_ecosystem/  # Datos sintéticos generados
+examples/*.json  # Ejemplos de análisis (ya subidos algunos, pero mejor ignorar futuros)
+examples/*.md    # Reportes de ejemplo
+
+# ----- DOCKER & CONTAINERS -----
+docker-compose*.yml    # ¡Excepto el base!
+!docker-compose.yml    # Mantener el archivo base
+docker-compose.generated.yml  # Ignorar el generado automáticamente
+
+# ----- SYSTEM & EDITOR -----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+desktop.ini
+
+# ----- IDE -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+*.code-workspace
+
+# ----- NOTEBOOKS -----
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# ----- TEMP & CACHE -----
+.cache/
+.tmp/
+temp/
+tmp/

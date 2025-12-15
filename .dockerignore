@@ -1,0 +1,36 @@
+# Inspector IA - Docker Ignore
+# =============================
+
+# Exclude everything first
+*
+
+# Then re-include only what's necessary
+!src/
+!config/
+!requirements.txt
+!docker/
+!scripts/
+!docs/
+
+# Explicitly exclude
+.git
+.gitignore
+.dockerignore
+.env
+.env.*
+.env.example
+logs/
+data/
+reports/
+models/
+synthetic_fraud_ecosystem/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+.vscode/
+.idea/
+.DS_Store
+docker-compose.generated.yml
