@@ -214,7 +214,7 @@ class CryptoHidingInjector:
             level: Sophistication level for obfuscation
             amount_to_hide: Total amount to conceal (auto-calculated if None)
             severity: Pattern severity from 0.1 (mild) to 1.0 (aggressive)
-            
+        
         Returns:
             Complete pattern structure with all metadata
         """
