@@ -445,7 +445,7 @@ class CryptoHidingInjector:
             level: Sophistication level for obfuscation
             amount_to_hide: Total amount to conceal (auto-calculated if None)
             severity: Pattern severity from 0.1 (mild) to 1.0 (aggressive)
-            
+        
         Returns:
             Complete pattern structure with all metadata
         """
@@ -490,7 +490,6 @@ def demonstrate_crypto_hiding():
 
 if __name__ == "__main__":
     demonstrate_crypto_hiding()
-
 PYTHON_EOF
 
 print_message "$GREEN" "✓ Starter implementation file created"
@@ -745,7 +744,6 @@ echo ""
 
 print_message "$YELLOW" "Documentation successfully deployed to local repository!"
 print_message "$YELLOW" "Review the files and push to GitHub when ready."
-
 PYTHON_EOF
 
 print_message "$GREEN" "✓ Deployment script created"

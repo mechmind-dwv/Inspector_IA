@@ -6,7 +6,7 @@ Orquestador de inyección de patrones de fraude sintético.
 
 Author: Inspector IA Core Team
 Version: 2.0
-Date: December 2024
+Date: December 2025
 """
 
 from typing import Dict, Any, List
