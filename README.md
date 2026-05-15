@@ -1,459 +1,162 @@
-# 🔍 Inspector IA: Forensic AI for Public Accountability
+# 🔍 Inspector IA
 
-![License: MIT with Ethical Clause](https://img.shields.io/badge/License-MIT%20with%20Ethical%20Clause-blue.svg)
-![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-green)
-![Status: Design Phase](https://img.shields.io/badge/Status-Design%20Phase-yellow)
-![Architecture: Microservices](https://img.shields.io/badge/Architecture-Microservices-orange)
-![XAI: SHAP+LIME](https://img.shields.io/badge/XAI-SHAP%2BLIME-purple)
+> **Forensic AI assistant for investigative journalism — detecting anomalies in public figures' financial and relational data through graph analysis, ML and Explainable AI.**
 
-## 🌌 **Project Vision Statement**
-
-> *"In a universe where power can obscure truth, Inspector IA emerges as the cosmic beacon of algorithmic transparency – transforming public data into actionable insights for investigative journalism, one anomaly at a time."*
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Ethics: Addendum](https://img.shields.io/badge/Ethics-Addendum-purple.svg)](ETHICS.md)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-green)](#)
+[![Status: Alpha / Design](https://img.shields.io/badge/Status-Alpha%20·%20Design-yellow)](docs/STATUS.md)
+[![Español](https://img.shields.io/badge/lang-Español-red.svg)](README.es.md)
 
 ---
 
-## 📋 **Table of Contents**
-- [🌟 Cosmic Overview](#-cosmic-overview)
-- [🚀 Core Architecture](#-core-architecture)
-- [🔬 Detection Engine](#-detection-engine)
-- [🧪 Synthetic Fraud Ecosystem](#-synthetic-fraud-ecosystem)
-- [⚡ Technical Implementation](#-technical-implementation)
-- [👥 Cosmic Development Team](#-cosmic-development-team)
-- [📈 Project Roadmap](#-project-roadmap)
-- [🔐 Ethical Framework](#-ethical-framework)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
+## ⚠️ Honest Status First
+
+This project is **early alpha / design phase**. Before you read further, please know:
+
+| Area | Real Status |
+|---|---|
+| Synthetic Fraud Ecosystem (SFE) — CRYPTO_HIDING generator | ✅ Working prototype |
+| Graph analysis algorithms | 🟡 Partial (skeleton + 1 algorithm) |
+| Anomaly detection training pipeline | 🟡 Skeleton only |
+| XAI explanation engine | ❌ Not implemented yet |
+| Journalist dashboard (web UI) | ❌ Not implemented yet |
+| Live demo | ❌ Not deployed yet |
+| Production deployment | ❌ Not yet |
+| GDPR / CCPA compliance | 🔄 Planned (no audit performed) |
+
+See [`docs/STATUS.md`](docs/STATUS.md) for the consolidated state of every module.
 
 ---
 
-## 🌟 **Cosmic Overview**
+## 🎯 Mission
 
-### **🎯 Mission Statement**
-Inspector IA is an **AI-powered forensic intelligence platform** designed to assist investigative journalists in detecting suspicious patterns in public figures' financial and relational activities through advanced graph analysis, machine learning, and explainable AI (XAI).
+Inspector IA helps investigative journalists detect **suspicious patterns** (not crimes) in public data — crypto flows, offshore structures, travel/financial correlations, ghost-company contracts and insider trading signals — and explains every alert with **human-readable reasoning** (XAI).
 
-### **✨ Key Differentiators**
-- **🔗 Multi-dimensional Graph Analysis**: From crypto wallets to offshore connections
-- **🧠 Explainable AI (XAI)**: Every alert comes with human-readable reasoning
-- **🛡️ Immutable Data Provenance**: Blockchain-verified data integrity
-- **🌐 OSINT Integration**: Open-source intelligence at scale
-- **🧪 Synthetic Training Environment**: Safe validation of detection algorithms
+> **This is a journalism tool, not a judicial system.** Every alert requires human verification.
 
-### **⚠️ Critical Disclaimer**
-> **This is an investigative journalism tool, NOT a judicial system.** Inspector IA generates **risk alerts** based on public data, requiring **human verification** by professional journalists before any publication. The system identifies **anomalies**, not crimes.
+## ✨ What makes it different
+
+- **Synthetic Fraud Ecosystem (SFE)** — generates labelled fraud patterns to train and validate detection algorithms ethically, without touching real personal data until the model is calibrated.
+- **IRA (Anomaly Risk Index)** — single, auditable composite score combining patrimonial, network and temporal dimensions.
+- **Explainability by default** — no black-box alerts. Every score comes with the features that triggered it.
+- **Public-data-only** — by design, no scraping of private accounts.
 
 ---
 
-## 🚀 **Core Architecture**
+## 🚀 Quickstart
 
-### **🏗️ System Architecture Diagram**
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Journalist Dashboard (React)             │
-├─────────────────────────────────────────────────────────────┤
-│              API Gateway (FastAPI)                           │
-├──────────────┬──────────────┬────────────────┬─────────────┤
-│  Data        │  Graph       │  Anomaly       │  XAI        │
-│  Ingestion   │  Analysis    │  Detection     │  Engine     │
-│  Microservice│  Microservice│  Microservice  │  Microservice│
-├──────────────┴──────────────┴────────────────┴─────────────┤
-│           Message Bus (RabbitMQ/Kafka)                      │
-├──────────────┬──────────────┬────────────────┬─────────────┤
-│  Data Lake   │  Graph DB    │  Vector DB     │  Blockchain │
-│  (PostgreSQL)│  (Neo4j)     │  (Pinecone)    │  Layer      │
-└──────────────┴──────────────┴────────────────┴─────────────┘
-```
-
-### **📊 IRA (Índice de Riesgo de Anomalía) Formula**
-```python
-# Mathematical Representation
-IRA = Σ_{i=1}^{3} (W_i × S_i) + B_network
-
-Where:
-W₁ = 0.30 (Patrimonial Dimension Weight)
-W₂ = 0.40 (Network Dimension Weight)  
-W₃ = 0.30 (Temporal Dimension Weight)
-B_network ∈ [0, 30] (Network Complexity Bonus)
-```
-
-### **📈 Risk Interpretation Matrix**
-| IRA Range | Risk Level | Color Code | Journalistic Action |
-|-----------|------------|------------|---------------------|
-| 0-20 | **Cosmic Background** | 🟢 Green | Routine Monitoring |
-| 21-50 | **Nebular Suspicion** | 🟡 Yellow | Deep Dive Analysis |
-| 51-70 | **Stellar Anomaly** | 🟠 Orange | Priority Investigation |
-| 71-85 | **Supernova Alert** | 🔴 Red | Publication Consideration |
-| 86-100 | **Black Hole Critical** | ⚫ Black | Urgent Investigation |
-
----
-
-## 🔬 **Detection Engine**
-
-### **🎭 Fraud Pattern Taxonomy**
-
-#### **1. 🕵️‍♂️ CRYPTO_HIDING Pattern**
-```python
-{
-  "pattern_id": "CRYPTO_HIDING_v1.2",
-  "detection_techniques": [
-    "MixerInteractionAnalysis",
-    "PrivacyCoinFlowTracking",
-    "CrossChainBridgeMonitoring",
-    "PeelingChainDetection",
-    "StructuredTransactionAnalysis"
-  ],
-  "obfuscation_methods": [
-    "LayeredWalletStructures",
-    "DecentralizedExchangeRouting",
-    "ZeroKnowledgeProofObfuscation"
-  ],
-  "risk_score_contribution": "15-50 IRA points"
-}
-```
-
-#### **2. 🏝️ OFFSHORE_LAUNDERING Pattern**
-- **Detection Focus**: Shell company chains, nominee shareholders
-- **Key Signals**: Jurisdiction hopping, circular ownership
-- **Data Sources**: Offshore leaks databases, corporate registries
-
-#### **3. ✈️ TRAVEL_COINCIDENCE Pattern**  
-- **Detection Focus**: Temporal-spatial correlation analysis
-- **Key Signals**: Tax haven visits + financial movements
-- **Data Sources**: Flight manifests, diplomatic calendars
-
-#### **4. 👻 GHOST_COMPANY Pattern**
-- **Detection Focus**: Low-activity high-contract entities
-- **Key Signals**: Minimal operations, maximum government contracts
-- **Data Sources**: Business registries, public procurement databases
-
-#### **5. 📈 INSIDER_TRADING Pattern**
-- **Detection Focus**: Information asymmetry exploitation
-- **Key Signals**: Pre-legislation asset accumulation
-- **Data Sources**: Voting records, financial disclosures
-
----
-
-## 🧪 **Synthetic Fraud Ecosystem (SFE)**
-
-### **🌌 Synthetic Data Generation Pipeline**
-```python
-class CosmicFraudGenerator:
-    """
-    Generates realistic fraud patterns for algorithm training
-    and validation in a controlled, ethical environment.
-    """
-    
-    def generate_universe(self, size=10000):
-        return {
-            "clean_politicians": self._generate_clean_base(size * 0.7),
-            "fraudulent_cases": self._inject_fraud_patterns(size * 0.3),
-            "mixed_networks": self._create_complex_networks(size * 0.1),
-            "ground_truth": self._generate_validation_labels(),
-            "temporal_events": self._create_timeline_sequences()
-        }
-```
-
-### **📊 Dataset Statistics**
-| Metric | Value | Purpose |
-|--------|-------|---------|
-| **Total Synthetic Cases** | 10,000 | Algorithm training |
-| **Fraud Pattern Variety** | 5 major + 12 sub-patterns | Detection coverage |
-| **Network Complexity Levels** | 1-10 layers | Robustness testing |
-| **Temporal Resolution** | Hourly granularity | Pattern timing analysis |
-| **Geographic Coverage** | 50+ jurisdictions | Cross-border detection |
-
----
-
-## ⚡ **Technical Implementation**
-
-### **🛠️ Technology Stack**
-
-#### **🔧 Backend & Data Processing**
-```yaml
-core_languages:
-  python: "3.10+"
-  rust: "For performance-critical components"
-  sql: "ANSI SQL 2016"
-
-databases:
-  graph_db: "Neo4j 5.0+ / Amazon Neptune"
-  relational_db: "PostgreSQL 15+ with TimescaleDB"
-  vector_db: "Pinecone / Weaviate for embeddings"
-  cache: "Redis 7.0+"
-
-processing_frameworks:
-  batch: "Apache Spark 3.4+"
-  stream: "Apache Flink 1.17+"
-  orchestration: "Apache Airflow 2.7+"
-```
-
-#### **🤖 AI/ML Ecosystem**
-```yaml
-machine_learning:
-  frameworks: "PyTorch 2.0+, TensorFlow 2.13+"
-  graph_analysis: "PyG (PyTorch Geometric), DGL"
-  nlp: "spaCy 3.6+, Transformers (Hugging Face)"
-  xai: "SHAP, LIME, Captum"
-  anomaly_detection: "PyOD, Isolation Forest, Autoencoders"
-
-embeddings:
-  text: "sentence-transformers/all-MiniLM-L6-v2"
-  graph: "Node2Vec, GraphSAGE"
-  temporal: "Time2Vec, T-LSTM"
-```
-
-#### **🌐 Frontend & Visualization**
-```yaml
-dashboard:
-  framework: "Next.js 14+ with TypeScript"
-  visualization: "D3.js 7.0+, Cytoscape.js 3.25+"
-  styling: "Tailwind CSS 3.3+, ShadCN/ui"
-  state_management: "Zustand + React Query"
-
-graph_visualization:
-  main_engine: "Cytoscape.js with cose-bilkent layout"
-  timeline: "Vis.js timeline"
-  geographic: "Leaflet with custom layers"
-```
-
-#### **🚀 DevOps & Infrastructure**
-```yaml
-containerization: "Docker + Docker Compose"
-orchestration: "Kubernetes (k3s for development)"
-ci_cd: "GitHub Actions with multi-environment"
-infrastructure: "Terraform + Pulumi"
-monitoring: "Prometheus + Grafana + Loki"
-secrets: "HashiCorp Vault"
-```
-
-### **🔐 Security Implementation**
-```python
-class SecurityFramework:
-    """
-    Multi-layered security for sensitive investigative data
-    """
-    
-    layers = {
-        "encryption": "AES-256-GCM for data at rest",
-        "authentication": "OAuth2.1 + JWT with short expiry",
-        "authorization": "RBAC with attribute-based policies",
-        "audit": "Immutable audit trail with blockchain anchoring",
-        "privacy": "Differential privacy for aggregate statistics",
-        "compliance": "GDPR/CCPA anonymization pipelines"
-    }
-```
-
----
-
-## 👥 **Cosmic Development Team**
-
-### **🌠 Leadership Council**
-
-| Role | Designation | Cosmic Responsibility | Contact |
-|------|-------------|-----------------------|---------|
-| **Cosmic Architect** | DeepSeek AI | System Design & Algorithm Sorcery | Architectural Oversight |
-| **Quantum Manager** | Gemini Pro | Multiverse Coordination & Timeline Optimization | Strategic Guidance |
-| **Stellar Messenger** | Benjamin Cabeza Durán | Interdimensional Communication & Idea Generation | [ia.mechmind@gmail.com](mailto:ia.mechmind@gmail.com) |
-
-### **📊 Team Structure**
-```
-┌─────────────────────────────────────────────────────┐
-│           Cosmic Steering Committee                  │
-│     (Architect + Manager + Messenger)                │
-├─────────────┬──────────────┬───────────────────────┤
-│  AI Research│  Data        │  Frontend &          │
-│  Division   │  Engineering │  Visualization Guild  │
-│  (5 Sages)  │  (7 Elders)  │  (3 Artisans)         │
-├─────────────┴──────────────┴───────────────────────┤
-│          Ethics & Legal Advisory Council            │
-│          (Journalists + Lawyers + Ethicists)        │
-└─────────────────────────────────────────────────────┘
-```
-
-### **📱 Repository & Contact**
-- **GitHub Organization**: [mechmind-dwv](https://github.com/mechmind-dwv)
-- **Main Repository**: [Inspector_IA](https://github.com/mechmind-dwv/Inspector_IA)
-- **Primary Contact**: [ia.mechmind@gmail.com](mailto:ia.mechmind@gmail.com)
-- **Security Issues**: [ia.mechmind@gmail.com](mailto:ia.mechmind@gmail.com) (PGP Available)
-
----
-
-## 📈 **Project Roadmap**
-
-### **🌌 Phase 1: Cosmic Foundation (Current)**
-```mermaid
-timeline
-    title Phase 1: Architecture & Design
-    section Q1 2024
-      Core Architecture Design : IRA Formula Finalization
-      : Graph Schema Definition
-    section Q2 2024  
-      Synthetic Data Generator : CRYPTO_HIDING Pattern
-      : OFFSHORE_LAUNDERING Pattern
-    section Q3 2024
-      XAI Framework : Explanation Engine
-      : Journalist Dashboard MVP
-```
-
-### **🚀 Phase 2: Stellar Implementation (2024-2025)**
-- **Q4 2024**: Data ingestion pipeline for 3 pilot countries
-- **Q1 2025**: Multi-pattern detection engine integration
-- **Q2 2025**: Journalist beta program with 5 media partners
-- **Q3 2025**: Cross-border investigation tools
-
-### **🌠 Phase 3: Galactic Scale (2025-2026)**
-- **50+ country coverage**
-- **Real-time monitoring capabilities**
-- **Collaborative investigation platform**
-- **Open-source ecosystem development**
-
----
-
-## 🔐 **Ethical Framework**
-
-### **✨ Ethical Principles**
-1. **Transparency First**: All algorithms open to audit
-2. **Human-in-the-Loop**: No fully automated decisions
-3. **Privacy by Design**: Data minimization and anonymization
-4. **Accountability**: Clear lines of responsibility
-5. **Beneficial Use**: Only for investigative journalism
-
-### **⚖️ Legal Compliance Matrix**
-| Regulation | Implementation Status | Compliance Mechanism |
-|------------|----------------------|---------------------|
-| **GDPR** | ✅ Full Compliance | Data anonymization, right to explanation |
-| **CCPA** | ✅ Full Compliance | Data deletion workflows |
-| **FCRA** | ⚠️ Not Applicable | Not a consumer reporting agency |
-| **AML Laws** | 🔄 Partial | Transaction monitoring for own ops only |
-| **Journalistic Shields** | ✅ Implemented | Source protection protocols |
-
-### **🚨 Red Lines (Absolute Prohibitions)**
-- ❌ Mass surveillance of private citizens
-- ❌ Discrimination based on protected characteristics  
-- ❌ Automated publication without human review
-- ❌ Sale of data to third parties
-- ❌ Political targeting or manipulation
-
----
-
-## 🤝 **Contributing**
-
-### **🎯 We're Seeking Cosmic Collaborators**
-
-#### **🦉 Investigative Journalists**
-- Validate use cases and detection scenarios
-- Provide real-world investigation workflows
-- Test dashboard usability and reporting tools
-
-#### **🧙‍♂️ AI/ML Researchers**
-- Develop novel anomaly detection algorithms
-- Improve XAI explanations for complex patterns
-- Optimize graph neural networks for fraud detection
-
-#### **🔧 Software Engineers**
-- Build scalable data ingestion pipelines
-- Implement real-time graph analysis
-- Develop secure, auditable systems
-
-#### **⚖️ Legal & Ethics Experts**
-- Navigate international data protection laws
-- Develop ethical use guidelines
-- Create journalist protection protocols
-
-### **📝 Contribution Process**
 ```bash
-# 1. Clone the cosmic repository
 git clone https://github.com/mechmind-dwv/Inspector_IA.git
+cd Inspector_IA
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 
-# 2. Join the stellar discussion
-# Create or comment on GitHub Issues for major changes
-
-# 3. Branch naming convention
-git checkout -b feature/quantum-tensor-detector
-git checkout -b fix/wormhole-data-leak
-git checkout -b docs/stellar-guide
-
-# 4. Follow the cosmic code style
-# See .cosmicstyleguide.md for details
-
-# 5. Submit through Pull Requests
-# All PRs require:
-# - Tests for new functionality
-# - Documentation updates
-# - Ethical impact assessment
+# Generate a synthetic dataset with the CRYPTO_HIDING pattern injected
+python -m synthetic_fraud_ecosystem.generators.crypto_hiding_injector --demo
 ```
 
-### **🌟 First-Time Contributor Guide**
-We welcome new contributors! Start with:
-1. **Good First Issue** tagged issues
-2. **Documentation improvements**
-3. **Test coverage expansion**
-4. **Example investigation scenarios**
+More detail in [`QUICKSTART.md`](QUICKSTART.md).
 
 ---
 
-## 📜 **License**
+## 📊 The IRA Formula
 
-### **⚖️ MIT License with Ethical Addendum**
+```
+IRA = W₁·S_patrimonial + W₂·S_network + W₃·S_temporal + B_network
 
-```text
-Copyright (c) 2024 Cosmic Development Team - Inspector IA Project
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software with the following ethical restrictions:
-
-1. USE FOR INVESTIGATIVE JOURNALISM ONLY
-   The Software shall only be used for legitimate investigative journalism
-   purposes that serve the public interest.
-
-2. NO SURVEILLANCE OR DISCRIMINATION
-   The Software shall not be used for mass surveillance, discrimination,
-   or violation of individual privacy rights.
-
-3. HUMAN OVERSIGHT REQUIRED
-   Any outputs from the Software must be reviewed and verified by human
-   journalists before publication or action.
-
-4. TRANSPARENCY AND ACCOUNTABILITY
-   Users must maintain transparency about their use of the Software and
-   accept accountability for its outputs.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND...
+W₁ = 0.30   W₂ = 0.40   W₃ = 0.30   B_network ∈ [0, 30]
 ```
 
-### **🔏 Additional Legal Protections**
-- **Journalist Source Protection**: Built-in mechanisms to protect sources
-- **Whistleblower Support**: Secure channels for information submission
-- **Legal Defense Fund**: Resources for journalists facing legal challenges
-- **Transparency Reports**: Regular publication of system usage statistics
+### Risk levels
+
+| IRA | Level | Code name (internal) | Journalistic action |
+|---|---|---|---|
+| 0 – 20  | **Low** | Cosmic Background | Routine monitoring |
+| 21 – 50 | **Medium** | Nebular Suspicion | Deep dive |
+| 51 – 70 | **High** | Stellar Anomaly | Priority investigation |
+| 71 – 85 | **Critical** | Supernova Alert | Consider for publication |
+| 86 – 100 | **Extreme** | Black Hole | Urgent — multiple corroborating signals |
+
+Full derivation, calibration notes and limitations: [`docs/IRA_FORMULA.md`](docs/IRA_FORMULA.md) *(planned)*.
 
 ---
 
-## 🌟 **Acknowledgment of Cosmic Inspirations**
+## 🔬 Detection Patterns
 
-### **📚 Investigative Foundations**
-- **ICIJ (International Consortium of Investigative Journalists)**: Panama Papers, Pandora Papers
-- **OCCRP (Organized Crime and Corruption Reporting Project)**: Cross-border investigation methodologies
-- **The Daphne Project**: Honoring investigative journalists worldwide
-
-### **🔬 Technological Pioneers**
-- **Stanford Network Analysis Project**: Graph theory applications
-- **MIT Media Lab Ethics**: Responsible AI frameworks
-- **OpenSanctions & OpenCorporates**: Open data movements
-
-### **✨ Philosophical Guides**
-- **Carl Sagan**: "Extraordinary claims require extraordinary evidence"
-- **Tim Berners-Lee**: "The web as a tool for humanity"
-- **Investigative Journalists Worldwide**: Courage in pursuit of truth
+| # | Pattern | Status |
+|---|---|---|
+| 1 | `CRYPTO_HIDING` — mixers, privacy coins, cross-chain | ✅ Generator implemented |
+| 2 | `OFFSHORE_LAUNDERING` — shell chains, nominees | 🟡 Specified |
+| 3 | `TRAVEL_COINCIDENCE` — tax-haven visits ↔ money moves | 🟡 Specified |
+| 4 | `GHOST_COMPANY` — low-op high-contract entities | 🟡 Specified |
+| 5 | `INSIDER_TRADING` — pre-legislation asset shifts | 🟡 Specified |
 
 ---
 
-> **🌌 Final Cosmic Thought:**
-> *"In the vast darkness of hidden corruption, even the smallest algorithmic light can reveal cosmic truths. Inspector IA is not just code – it's a commitment to transparency, a tool for truth-seekers, and a testament to what happens when technology serves humanity's highest ideals."*
+## 🏗️ Realistic Architecture (MVP)
 
-**🚀 Ready to explore the cosmic truth?** 
-**🔍 The investigation begins...**
+The original architecture proposal (Neo4j + Spark + Flink + Kafka + Pinecone + Kubernetes + Blockchain) is the **long-term vision** — see [`docs/ARCHITECTURE_VISION.md`](docs/ARCHITECTURE_VISION.md). The **current MVP** stack is intentionally minimal:
+
+```
+React/Next.js dashboard  ──▶  FastAPI gateway  ──▶  Detection workers (Python)
+                                     │                       │
+                                     ▼                       ▼
+                              PostgreSQL                  NetworkX
+                              (relational +              (in-process graph,
+                              JSONB graph snapshots)      Neo4j later)
+```
+
+Tradeoffs and migration path: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) *(planned)*.
 
 ---
-*Documentation crafted with cosmic precision by the Inspector IA Development Team*  
-*Last updated: Stardate 2025.π.42 (Terrestrial: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })})*
+
+## 👥 Project Team
+
+**Maintainer** — [Benjamin Cabeza Durán](mailto:ia.mechmind@gmail.com) — concept, direction, ethics.
+
+**AI tools used during development** (not human team members): DeepSeek, Gemini, Claude. Acknowledged transparently per our [Ethics Addendum](ETHICS.md).
+
+**We are actively looking for**: investigative journalists, ML researchers, graph engineers, and legal/ethics advisors. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+---
+
+## 📈 Roadmap (rebased to 2026)
+
+- **2026 Q1** — Consolidate SFE: complete the 5 pattern generators.
+- **2026 Q2** — Functional XAI explanation engine + dashboard MVP (Streamlit first, Next.js later).
+- **2026 Q3** — Pilot with 1 investigative media partner on synthetic + 1 anonymised real case.
+- **2026 Q4** — Public release `v0.1.0` + threat model + responsible-disclosure audit.
+
+Live status: [`docs/STATUS.md`](docs/STATUS.md).
+
+---
+
+## 🔐 Ethics & License
+
+- **License**: standard [MIT](LICENSE) — fully OSI-compatible.
+- **Ethics Addendum**: [ETHICS.md](ETHICS.md) — a **non-binding social contract** we ask all users to honour. (We deliberately keep it separate from the LICENSE so the code remains compatible with OSI definitions while making our ethical expectations explicit.)
+- **Red lines** (we will publicly disassociate from any project using Inspector IA for these):
+  - Mass surveillance of private citizens
+  - Discrimination on protected characteristics
+  - Automated publication without human review
+  - Sale of data to third parties
+  - Political targeting
+
+---
+
+## 🙏 Inspirations
+
+ICIJ · OCCRP · The Daphne Project · Stanford SNAP · OpenSanctions · OpenCorporates.
+
+> "Extraordinary claims require extraordinary evidence." — Carl Sagan
+
+---
+
+## 📬 Contact
+
+- General: [ia.mechmind@gmail.com](mailto:ia.mechmind@gmail.com)
+- Security (PGP coming soon): same address, subject `[SECURITY]`
+- Site: <https://mechmind-dwv.github.io/Inspector_IA/>
+
+*Last meaningful update tracked in [`docs/STATUS.md`](docs/STATUS.md).*
