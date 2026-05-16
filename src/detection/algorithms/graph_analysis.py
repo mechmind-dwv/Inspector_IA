@@ -199,7 +199,7 @@ class GraphXAIExplainer:
             List of paths (each path is list of node IDs)
         """
         query = """
-        MATCH path = (p:Politico {id: $politico_id})-[*1..{max_degrees}]-(c:ContratoPublico)
+        MATCH path = (p:Politico {id: $politico_id})-[*1..$max_degrees]-(c:ContratoPublico)
         WHERE NONE(
             rel IN relationships(path) 
             WHERE type(rel) = 'ES_CONYUGE' AND rel.estado = 'divorciado'
@@ -208,7 +208,7 @@ class GraphXAIExplainer:
              nodes(path) as nodos,
              relationships(path) as relaciones,
              length(path) as distancia
-        WHERE distancia <= {max_degrees}
+        WHERE distancia <= $max_degrees
         RETURN 
             [n IN nodos | n.id] as node_ids,
             [n IN nodos | labels(n)[0]] as node_types,
@@ -228,11 +228,11 @@ class GraphXAIExplainer:
             ) as weight_score
         ORDER BY weight_score DESC, distancia ASC
         LIMIT 10
-        """.format(
-            max_degrees=max_degrees
-        )
+        """
 
-        results = self.graph.execute_query(query, {"politico_id": politician_id})
+        results = self.graph.execute_query(
+            query, {"politico_id": politician_id, "max_degrees": max_degrees}
+        )
         return self._parse_path_results(results)
 
     def analyze_path(self, path_data: Dict) -> PathAnalysis:
