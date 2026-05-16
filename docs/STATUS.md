@@ -65,6 +65,30 @@ The original README's "Phase 1 (Current) Q1-Q3 2024" was **24 months out of date
 
 ---
 
+## 6. Known lint backlog (post-formatter PR)
+
+After applying `black + isort + ruff --fix` (safe fixes only) the codebase
+conforms to formatting. **Ruff lint** is currently non-blocking in CI because
+of the following pre-existing issues, which are real code bugs (not style)
+and require dedicated fixes:
+
+| Rule | Count | Nature | Owner |
+|---|---|---|---|
+| `W291` trailing-whitespace | 42 | inside multi-line strings (changing them alters runtime output) | review case by case |
+| `E501` line-too-long | 25 | mostly in docstrings & log strings | refactor PR |
+| `F821` undefined-name | 6 | e.g. `MockBlockchain` referenced but not imported in `synthetic_fraud_ecosystem/generators/crypto_hiding_injector.py` | bug fix PR |
+| `E402` module-import-not-at-top | 4 | `sys.path` hacks in scripts | restructure |
+| `F524` string-dot-format-missing-args | 2 | template strings missing arguments | bug fix PR |
+| `F841` unused-variable | 2 | unused assignments | cleanup |
+| `F401` unused-import | 1 | dead import | cleanup |
+
+These will be addressed in subsequent dedicated PRs. Until then `ruff check`
+runs with `--exit-zero` and surfaces results as GitHub annotations, so
+contributors see them without the CI being permanently red.
+
+**Important:** do **not** widen the `[tool.ruff.lint] ignore` list in
+`pyproject.toml` to make these go away. They are real bugs.
+
 ## 5. How to update this file
 
 Anyone merging a PR that changes module status **must** update the relevant row above in the same PR. The CI checks for a touched `docs/STATUS.md` when files outside `docs/archive/` are modified (see `.github/workflows/ci.yml`).

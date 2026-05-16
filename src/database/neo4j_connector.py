@@ -10,14 +10,14 @@ Version: 2.0
 Date: December 2024
 """
 
-from typing import Dict, List, Optional, Any, Tuple
-from datetime import datetime
 import logging
 import os
+from typing import Dict, List, Optional
 
 try:
-    from neo4j import GraphDatabase, Driver, Session
-    from neo4j.exceptions import ServiceUnavailable, AuthError
+    from neo4j import Driver, GraphDatabase, Session
+    from neo4j.exceptions import AuthError, ServiceUnavailable
+
     NEO4J_AVAILABLE = True
 except ImportError:
     NEO4J_AVAILABLE = False
@@ -30,24 +30,24 @@ logger = logging.getLogger(__name__)
 class Neo4jConnector:
     """
     Conector para base de datos Neo4j.
-    
+
     Proporciona métodos para:
     - Gestión de conexiones
     - Ejecución de consultas Cypher
     - Operaciones CRUD en nodos y relaciones
     - Análisis de grafos
     """
-    
+
     def __init__(
         self,
         uri: Optional[str] = None,
         user: Optional[str] = None,
         password: Optional[str] = None,
-        database: str = "neo4j"
+        database: str = "neo4j",
     ):
         """
         Inicializa el conector Neo4j.
-        
+
         Args:
             uri: URI de conexión (ej: bolt://localhost:7687)
             user: Usuario de Neo4j
@@ -59,26 +59,23 @@ class Neo4jConnector:
             self.driver = None
             self.mock_mode = True
             return
-        
+
         # Obtener credenciales de variables de entorno si no se proporcionan
         self.uri = uri or os.getenv("NEO4J_URI", "bolt://localhost:7687")
         self.user = user or os.getenv("NEO4J_USER", "neo4j")
         self.password = password or os.getenv("NEO4J_PASSWORD", "password")
         self.database = database
-        
+
         self.driver: Optional[Driver] = None
         self.mock_mode = False
-        
+
         # Intentar conectar
         self._connect()
-    
+
     def _connect(self):
         """Establece conexión con Neo4j."""
         try:
-            self.driver = GraphDatabase.driver(
-                self.uri,
-                auth=(self.user, self.password)
-            )
+            self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
             # Verificar conexión
             self.driver.verify_connectivity()
             logger.info(f"✅ Conectado a Neo4j en {self.uri}")
@@ -87,34 +84,30 @@ class Neo4jConnector:
             logger.warning("Operando en modo mock sin base de datos")
             self.mock_mode = True
             self.driver = None
-    
+
     def close(self):
         """Cierra la conexión con Neo4j."""
         if self.driver:
             self.driver.close()
             logger.info("Conexión Neo4j cerrada")
-    
-    def execute_query(
-        self,
-        query: str,
-        parameters: Optional[Dict] = None
-    ) -> List[Dict]:
+
+    def execute_query(self, query: str, parameters: Optional[Dict] = None) -> List[Dict]:
         """
         Ejecuta una consulta Cypher.
-        
+
         Args:
             query: Consulta Cypher
             parameters: Parámetros de la consulta
-        
+
         Returns:
             Lista de resultados como diccionarios
         """
         if self.mock_mode:
             logger.warning("Mock mode: query not executed")
             return []
-        
+
         parameters = parameters or {}
-        
+
         try:
             with self.driver.session(database=self.database) as session:
                 result = session.run(query, parameters)
@@ -122,28 +115,24 @@ class Neo4jConnector:
         except Exception as e:
             logger.error(f"Error ejecutando query: {e}")
             raise
-    
-    def execute_write(
-        self,
-        query: str,
-        parameters: Optional[Dict] = None
-    ) -> Dict:
+
+    def execute_write(self, query: str, parameters: Optional[Dict] = None) -> Dict:
         """
         Ejecuta una consulta de escritura.
-        
+
         Args:
             query: Consulta Cypher de escritura
             parameters: Parámetros de la consulta
-        
+
         Returns:
             Resumen de la operación
         """
         if self.mock_mode:
             logger.warning("Mock mode: write not executed")
             return {"nodes_created": 0, "relationships_created": 0}
-        
+
         parameters = parameters or {}
-        
+
         try:
             with self.driver.session(database=self.database) as session:
                 result = session.run(query, parameters)
@@ -153,21 +142,21 @@ class Neo4jConnector:
                     "nodes_deleted": summary.counters.nodes_deleted,
                     "relationships_created": summary.counters.relationships_created,
                     "relationships_deleted": summary.counters.relationships_deleted,
-                    "properties_set": summary.counters.properties_set
+                    "properties_set": summary.counters.properties_set,
                 }
         except Exception as e:
             logger.error(f"Error ejecutando write: {e}")
             raise
-    
+
     # ==================== OPERACIONES CRUD ====================
-    
+
     def create_politician_node(self, politician_data: Dict) -> str:
         """
         Crea un nodo de político en el grafo.
-        
+
         Args:
             politician_data: Datos del político
-        
+
         Returns:
             ID del nodo creado
         """
@@ -185,7 +174,7 @@ class Neo4jConnector:
         })
         RETURN p.id as id
         """
-        
+
         parameters = {
             "id": politician_data.get("id"),
             "nombre": politician_data.get("name"),
@@ -194,19 +183,19 @@ class Neo4jConnector:
             "nivel": politician_data.get("government_level", "nacional"),
             "fecha_inicio": politician_data.get("start_date", "2020-01-01"),
             "ingreso": politician_data.get("annual_income", 0),
-            "patrimonio": politician_data.get("total_assets", 0)
+            "patrimonio": politician_data.get("total_assets", 0),
         }
-        
+
         result = self.execute_query(query, parameters)
         return result[0]["id"] if result else politician_data.get("id")
-    
+
     def create_company_node(self, company_data: Dict) -> str:
         """
         Crea un nodo de empresa en el grafo.
-        
+
         Args:
             company_data: Datos de la empresa
-        
+
         Returns:
             ID del nodo creado
         """
@@ -223,7 +212,7 @@ class Neo4jConnector:
         })
         RETURN e.id as id
         """
-        
+
         parameters = {
             "id": company_data.get("id"),
             "nombre": company_data.get("name"),
@@ -231,74 +220,62 @@ class Neo4jConnector:
             "fecha": company_data.get("incorporation_date", "2000-01-01"),
             "sector": company_data.get("sector", ""),
             "offshore": company_data.get("is_offshore", False),
-            "riesgo": company_data.get("ghost_risk_score", 0.0)
+            "riesgo": company_data.get("ghost_risk_score", 0.0),
         }
-        
+
         result = self.execute_query(query, parameters)
         return result[0]["id"] if result else company_data.get("id")
-    
+
     def create_relationship(
-        self,
-        from_id: str,
-        to_id: str,
-        rel_type: str,
-        properties: Optional[Dict] = None
+        self, from_id: str, to_id: str, rel_type: str, properties: Optional[Dict] = None
     ) -> bool:
         """
         Crea una relación entre dos nodos.
-        
+
         Args:
             from_id: ID del nodo origen
             to_id: ID del nodo destino
             rel_type: Tipo de relación
             properties: Propiedades de la relación
-        
+
         Returns:
             True si se creó exitosamente
         """
         properties = properties or {}
-        
+
         # Construir string de propiedades
         props_str = ", ".join([f"{k}: ${k}" for k in properties.keys()])
         if props_str:
             props_str = f"{{{props_str}, created_at: datetime()}}"
         else:
             props_str = "{created_at: datetime()}"
-        
+
         query = f"""
         MATCH (a {{id: $from_id}})
         MATCH (b {{id: $to_id}})
         CREATE (a)-[r:{rel_type} {props_str}]->(b)
         RETURN r
         """
-        
-        parameters = {
-            "from_id": from_id,
-            "to_id": to_id,
-            **properties
-        }
-        
+
+        parameters = {"from_id": from_id, "to_id": to_id, **properties}
+
         try:
             result = self.execute_query(query, parameters)
             return len(result) > 0
         except Exception as e:
             logger.error(f"Error creando relación: {e}")
             return False
-    
+
     # ==================== CONSULTAS DE ANÁLISIS ====================
-    
-    def find_paths_to_contracts(
-        self,
-        politician_id: str,
-        max_degrees: int = 3
-    ) -> List[Dict]:
+
+    def find_paths_to_contracts(self, politician_id: str, max_degrees: int = 3) -> List[Dict]:
         """
         Encuentra caminos desde un político a contratos públicos.
-        
+
         Args:
             politician_id: ID del político
             max_degrees: Máximo grados de separación
-        
+
         Returns:
             Lista de caminos encontrados
         """
@@ -334,18 +311,18 @@ class Neo4jConnector:
         ORDER BY weight_score DESC, distancia ASC
         LIMIT 10
         """
-        
+
         try:
             results = self.execute_query(query, {"politico_id": politician_id})
             return results
         except Exception as e:
             logger.error(f"Error buscando caminos: {e}")
             return []
-    
+
     def detect_ghost_companies(self) -> List[Dict]:
         """
         Detecta empresas fantasma en el grafo.
-        
+
         Returns:
             Lista de empresas con características de fantasma
         """
@@ -373,26 +350,22 @@ class Neo4jConnector:
         RETURN e.id as id, e.nombre as nombre, e.riesgo_fantasma as riesgo
         ORDER BY riesgo DESC
         """
-        
+
         try:
             results = self.execute_query(query)
             return results
         except Exception as e:
             logger.error(f"Error detectando empresas fantasma: {e}")
             return []
-    
-    def find_temporal_coincidences(
-        self,
-        politician_id: str,
-        days_window: int = 90
-    ) -> List[Dict]:
+
+    def find_temporal_coincidences(self, politician_id: str, days_window: int = 90) -> List[Dict]:
         """
         Encuentra coincidencias temporales entre eventos.
-        
+
         Args:
             politician_id: ID del político
             days_window: Ventana de días para considerar coincidencia
-        
+
         Returns:
             Lista de coincidencias encontradas
         """
@@ -417,21 +390,21 @@ class Neo4jConnector:
         ORDER BY abs(dias_diferencia) ASC
         LIMIT 20
         """
-        
+
         try:
             results = self.execute_query(query, {"politico_id": politician_id})
             return results
         except Exception as e:
             logger.error(f"Error buscando coincidencias temporales: {e}")
             return []
-    
+
     def get_network_statistics(self, politician_id: str) -> Dict:
         """
         Obtiene estadísticas de la red de un político.
-        
+
         Args:
             politician_id: ID del político
-        
+
         Returns:
             Diccionario con estadísticas
         """
@@ -447,7 +420,7 @@ class Neo4jConnector:
             count(DISTINCT r3) as contratos_directos,
             count(DISTINCT offshore) as conexiones_offshore
         """
-        
+
         try:
             results = self.execute_query(query, {"politico_id": politician_id})
             if results:
@@ -456,14 +429,14 @@ class Neo4jConnector:
                 "relaciones_personales": 0,
                 "relaciones_empresariales": 0,
                 "contratos_directos": 0,
-                "conexiones_offshore": 0
+                "conexiones_offshore": 0,
             }
         except Exception as e:
             logger.error(f"Error obteniendo estadísticas: {e}")
             return {}
-    
+
     # ==================== UTILIDADES ====================
-    
+
     def clear_database(self):
         """
         PELIGRO: Elimina todos los nodos y relaciones.
@@ -472,32 +445,32 @@ class Neo4jConnector:
         if self.mock_mode:
             logger.warning("Mock mode: database not cleared")
             return
-        
+
         query = "MATCH (n) DETACH DELETE n"
         logger.warning("⚠️  Eliminando toda la base de datos...")
         self.execute_write(query)
         logger.info("✅ Base de datos limpiada")
-    
+
     def create_indexes(self):
         """Crea índices para mejorar el rendimiento."""
         indexes = [
             "CREATE INDEX politician_id IF NOT EXISTS FOR (p:Politico) ON (p.id)",
             "CREATE INDEX empresa_id IF NOT EXISTS FOR (e:Empresa) ON (e.id)",
             "CREATE INDEX contrato_id IF NOT EXISTS FOR (c:ContratoPublico) ON (c.id)",
-            "CREATE INDEX persona_id IF NOT EXISTS FOR (p:PersonaNatural) ON (p.id)"
+            "CREATE INDEX persona_id IF NOT EXISTS FOR (p:PersonaNatural) ON (p.id)",
         ]
-        
+
         for index_query in indexes:
             try:
                 self.execute_write(index_query)
-                logger.info(f"✅ Índice creado")
+                logger.info("✅ Índice creado")
             except Exception as e:
                 logger.warning(f"Índice ya existe o error: {e}")
-    
+
     def __enter__(self):
         """Context manager entry."""
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit."""
         self.close()
@@ -505,10 +478,11 @@ class Neo4jConnector:
 
 # ==================== FUNCIONES DE UTILIDAD ====================
 
+
 def get_neo4j_connector() -> Neo4jConnector:
     """
     Factory function para obtener un conector Neo4j.
-    
+
     Returns:
         Instancia de Neo4jConnector
     """
