@@ -9,6 +9,8 @@ Version: 2.0
 Date: December 2024
 """
 
+import random
+
 
 class MockBlockchain:
     """

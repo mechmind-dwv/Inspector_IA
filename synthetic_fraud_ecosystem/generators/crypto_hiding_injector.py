@@ -140,6 +140,14 @@ class CryptoTransaction:
 # ==================== MOTOR DE INYECCIÓN PRINCIPAL ====================
 
 
+class MockBlockchain:
+    """Minimal in-process blockchain simulator used when no real connector is injected."""
+
+    def __init__(self):
+        self.wallets = {}
+        self.transactions = []
+
+
 class CryptoHidingInjector:
     """
     Motor de inyección de patrones CRYPTO_HIDING con tres niveles de dificultad

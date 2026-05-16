@@ -1,3 +1,6 @@
+import random
+from typing import Dict, List
+
 from synthetic_fraud_ecosystem.generators.cosmic_fraud_generator import CosmicFraudGenerator
 from synthetic_fraud_ecosystem.generators.crypto_hiding_injector import CryptoEvasionLevel
 
