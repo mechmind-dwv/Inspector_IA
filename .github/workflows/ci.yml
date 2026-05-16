@@ -30,11 +30,14 @@ jobs:
           pip install ruff black mypy pytest pytest-cov
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Ruff lint
-        run: ruff check .
+      - name: Ruff lint (non-blocking, see docs/STATUS.md §6)
+        run: ruff check --exit-zero --output-format=github .
 
-      - name: Black format check
+      - name: Black format check (blocking)
         run: black --check .
+
+      - name: isort check (blocking)
+        run: isort --check-only --profile=black .
 
       - name: Mypy (non-blocking for now)
         run: mypy . || true

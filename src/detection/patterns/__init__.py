@@ -15,15 +15,15 @@ Date: December 2024
 """
 
 from .crypto_hiding import CryptoHidingDetector
-from .offshore_laundering import OffshoreLaunderingDetector
-from .travel_coincidence import TravelCoincidenceDetector
 from .ghost_company import GhostCompanyDetector
 from .insider_trading import InsiderTradingDetector
+from .offshore_laundering import OffshoreLaunderingDetector
+from .travel_coincidence import TravelCoincidenceDetector
 
 __all__ = [
-    'CryptoHidingDetector',
-    'OffshoreLaunderingDetector',
-    'TravelCoincidenceDetector',
-    'GhostCompanyDetector',
-    'InsiderTradingDetector',
+    "CryptoHidingDetector",
+    "OffshoreLaunderingDetector",
+    "TravelCoincidenceDetector",
+    "GhostCompanyDetector",
+    "InsiderTradingDetector",
 ]
